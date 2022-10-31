@@ -1,0 +1,21 @@
+{
+  "extends": "airbnb-base",
+  "env": {
+      "node": true,
+      "mocha": true
+  },
+  "parserOptions": {
+    "ecmaVersion": 2020
+  },
+  "rules": {
+    "no-async-promise-executor": 0,
+    "no-underscore-dangle": [
+      "error", {
+        "allow": [
+          "_id"
+        ]
+      }
+    ]
+  },
+  "ignorePatterns": [ "src/interfaces/http/public/*" ]
+}

@@ -1,0 +1,103 @@
+{
+  "name": "job-positions-service",
+  "version": "1.15.1",
+  "description": "Api Development test Job Positions",
+  "main": "index.js",
+  "engines": {
+    "node": ">=10.16.0"
+  },
+  "nyc": {
+    "all": true,
+    "include": [
+      "src/**/*.js"
+    ]
+  },
+  "husky": {
+    "hooks": {
+      "pre-push": "npm run test && npm run lint"
+    }
+  },
+  "scripts": {
+    "start": "node src/index.js",
+    "start:rest": "INTERFACE=rest node src/index.js",
+    "dev:rest": "INTERFACE=rest REST_PORT=9100 node_modules/.bin/nodemon src/index.js",
+    "test": "cross-env NODE_ENV=test REST_PORT=9110 mocha --require @babel/register 'test/**/**.test.js' --exit",
+    "test:coverage": "nyc --reporter=html --reporter=text npm run test",
+    "lint": "eslint ./",
+    "db:migrate": "node_modules/.bin/sequelize db:migrate --config src/drivers/sequelize/database.js",
+    "db:migrate:rollback": "node_modules/.bin/sequelize db:migrate:undo --config src/drivers/sequelize/database.js",
+    "db:migrate:rollback:all": "node_modules/.bin/sequelize db:migrate:undo:all --config src/drivers/sequelize/database.js",
+    "generate:migration": "node_modules/.bin/sequelize migration:generate --config src/drivers/sequelize/database.js --name"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/dionarya23/be-test-dans-multi-pro.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "homepage": "https://github.com/dionarya23/be-test-dans-multi-pro#readme",
+  "dependencies": {
+    "@babel/polyfill": "^7.4.4",
+    "bcrypt": "^5.1.0",
+    "body-parser": "^1.19.0",
+    "browserslist": "^4.16.4",
+    "bull": "^4.8.3",
+    "caniuse-lite": "^1.0.30001209",
+    "change-case": "^3.1.0",
+    "cors": "^2.8.5",
+    "dotenv": "^8.1.0",
+    "express": "^4.17.1",
+    "express-useragent": "^1.0.15",
+    "form-data": "^2.5.1",
+    "helmet": "^3.20.0",
+    "http-errors": "^1.8.0",
+    "joi": "^17.4.0",
+    "jsonwebtoken": "^8.5.1",
+    "log4js": "^6.3.0",
+    "moment": "^2.29.4",
+    "nconf": "^0.12.0",
+    "path": "^0.12.7",
+    "pg": "^8.5.1",
+    "pg-hstore": "^2.3.3",
+    "qs": "^6.10.2",
+    "redis": "^3.1.2",
+    "request-ip": "^2.1.3",
+    "require-dir": "^1.2.0",
+    "sequelize": "^5.22.4",
+    "sequelize-cli": "^6.2.0",
+    "shortid": "^2.2.16",
+    "shortid-36": "^0.1.2",
+    "supertest": "^4.0.2",
+    "swagger-ui-express": "^4.0.7",
+    "uuid": "^8.3.2"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.5.5",
+    "@babel/core": "^7.5.5",
+    "@babel/node": "^7.5.5",
+    "@babel/plugin-syntax-optional-chaining": "^7.8.3",
+    "@babel/preset-env": "^7.5.5",
+    "@babel/register": "^7.5.5",
+    "babel-core": "^7.0.0-bridge.0",
+    "chai": "^4.2.0",
+    "concurrently": "^7.0.0",
+    "core-js": "^3.2.1",
+    "cross-env": "^5.2.0",
+    "cz-conventional-changelog": "^3.0.1",
+    "eslint": "^6.2.2",
+    "eslint-config-airbnb-base": "^14.0.0",
+    "eslint-plugin-import": "^2.18.2",
+    "eslint-plugin-jsx-a11y": "^6.2.3",
+    "husky": "^3.0.4",
+    "mocha": "^6.2.0",
+    "nodemon": "^2.0.7",
+    "nyc": "^14.1.1",
+    "rimraf": "^3.0.0",
+    "sinon": "^7.4.1"
+  },
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    }
+  }
+}

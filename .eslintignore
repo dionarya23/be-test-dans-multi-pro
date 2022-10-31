@@ -1,0 +1,7 @@
+build/
+coverage/
+docker/
+dist/
+kubernetes/
+logs/
+node_modules/
